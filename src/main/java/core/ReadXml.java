@@ -143,10 +143,12 @@ public class ReadXml {
 				// 使用线程安全的ArrayList赋值
 				CopyOnWriteArrayList<String> caseCopyList = caseList;
 				// 加入总用例集合
-				for (String s : caseList) {
+				for (String caseNode : caseList) {
 					// 如果任意节点内容包含关键字（N），该条用例不加入用例集
-					if (s.contains("（N）")) {
+					if (caseNode.contains("（N）")) {
 						caseCopyList.removeAll(caseList);
+						// 遍历到包含关键字节点，跳出循环不再遍历该行用例
+						break;
 					}
 				}
 				if(!caseCopyList.isEmpty()){
